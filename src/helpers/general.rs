@@ -6,7 +6,9 @@ use std::fs;
 
 const CODE_TEMPLATE_PATH: &str =
     r#"C:\Users\haoti\Documents\rust-project\web_template\src\code_template.rs"#;
-const EXEC_MAIN_PATH: &str = r#"C:\Users\haoti\Documents\rust-project\web_template\src\main.rs"#;
+pub const EXEC_MAIN_PATH: &str =
+    r#"C:\Users\haoti\Documents\rust-project\web_template\src\main.rs"#;
+pub const WEB_SERVER_PROJECT_PATH: &str = r#"C:\Users\haoti\Documents\rust-project\web_template\"#;
 const API_SCHEMA_PATH: &str =
     r#"C:\Users\haoti\Documents\rust-project\AutoGPT\schemas\api_schema.json"#;
 
@@ -71,6 +73,12 @@ pub async fn check_status_code(client: &Client, url: &str) -> Result<u16, reqwes
 // obtain code template
 pub fn read_code_template_contents() -> String {
     let path: String = String::from(CODE_TEMPLATE_PATH);
+    fs::read_to_string(path).expect("Failed to read code template")
+}
+
+// get exec main
+pub fn read_exec_main_contents() -> String {
+    let path: String = String::from(EXEC_MAIN_PATH);
     fs::read_to_string(path).expect("Failed to read code template")
 }
 
